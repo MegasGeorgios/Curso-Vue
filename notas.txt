@@ -1,0 +1,161 @@
+DIRECTIVAS:
+*) v-model
+*) v-show
+*) v-if, v-else-if, v-else
+*) v-for con clave unica :key="obj.id" //normalmente el id del objeto 
+*) se pueden crear propias directivas (dir /directives) https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12255436#questions
+*) :disable="alguna validacion o var bool"
+
+
+EVENTOS:
+*) @click
+*) @submit-prevent
+
+
+COMPUTED:
+*) declarar propiedad como funcion (archivo computed-properties.js)
+*) propiedades con get y set (archivo computed-properties-get-set.js)
+
+
+CARGAR COMPONENTES DINAMICAMENTE:
+*) archivo load-dynamic-components.js y en el dir /dynamic-components
+
+
+PROPS:
+*) archivo props.js 
+para props que no sean string lleban ':'
+<props name="Israel" surname="Parra" :age="15"></props>
+
+*) se puede hacer validaciones en la prop:
+age: {
+	type: Number,
+	required: true,
+	validator: value => {
+	  if (value < 18) {
+	    console.warn('No eres mayor de edad...');
+	    return false;
+	  }
+	  return true;
+	}
+}
+
+
+OTROS:
+*) mixins
+*) watchers
+*) plugins
+
+
+VUE CLI:
+
+Instalarlo:
+$ vue --version
+$ sudo npm install -g @vue/cli
+
+Levantar servidor:
+$ vue ui
+
+crear y ejecutar proyecto una vez levantado el server: https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12255614#overview
+
+
+VUEX:
+
+es una libreria que nos ayuda a mantener un estdo centralizado de los estados, es decir, se puede accerder a los datos de todos los componentes de manera global, el diagrama de vuex se base en acciones, mutaciones y estados (una accion ejecuta una mutacion que actualiza un estado) se podria decir que una mutacion es un metodo y un estado un dato, ver el diagrama: https://vuex.vuejs.org/
+
+creando el proyecto con vue cli y seleccionando vuex, el archivo principal de vuex donde se declaran las acciones, mutaciones y estados es /src/store.jss
+
+
+PERSISTENCIA DE DATOS EN LOCAL STORAGE CON VUEX
+
+en el archivo  store.js aggregar (ver proyecto vuex-auth-child-routes):
+
+import VuexPersistence from 'vuex-persist'
+
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage,
+  modules: ['auth']
+})
+
+
+PLUGINS:
+
+se declaran en el app.js
+bootstrap vue: https://bootstrap-vue.js.org/docs
+vue paginate:  https://www.npmjs.com/package/vue-paginate
+vuelidate: https://github.com/vuelidate/vuelidate (para las validaciones)
+veeValidate: https://baianat.github.io/vee-validate/ (para las validaciones) NOTA: data-vv-as (atributo componente)
+
+para no declarar los plugins en el archivo principal app se crea un dir plugin y dentro un archivo por plugin y un index.js donde se importaran todos, ver: vue-crud-todo/src/plugins/ y en el main.js colocar require('./plugins')
+
+AXIOS:
+
+instalar: npm install --save axios vue-axios
+
+definir la url base de la api a comsumir -> vue-crud-todo/src/plugins/vue-axios.js
+
+
+VUE ROUTER:
+
+archivo /src/router.js (en el proyecto vuex-auth-child-routes se refactorizo las rutas pasandolas al arhivo routes.js ya que contiene rutas hijas, por defecto el archivo de rutas es el del proyecto vue-crud-todo)
+
+para rutas hijas se debe agregar el componente <router-view /> tambien en el componente de la ruta padre (mirar comp /secret/secret.vue del proyecto vuex-auth-child-routes)
+
+
+GENERAR DATOS ALEATORIOS https://mockaroo.com/
+
+
+JSON SERVER: 
+
+https://github.com/typicode/json-server
+
+proyecto vuex-auth-child-routes utilizar comando: $ json-server --watch db.json --middlewares login.js
+
+proyecto formularios-avanzados hace peticion post a json server en el archivo src/views/Activities.vue, esa ruta(/activities_subscriptions) esta definida en el archivo db.js de json-server-formularios
+
+Instalar http-server
+
+sudo npm install http-server -g
+
+con esto posicionandonos en el directorio del proyecto y ejecutando http-server en la terminal, levantamos el servidor y accedemos en el nav a localhost:8080 
+
+-)se puede acceder desde el hijo a una variable del padre sin pasarla como prop mediante $parent.nombredata desde el comp hijo, https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12255338#questions
+
+-)De esta manera podemos acceder a una variable de un componente hijo desde el padre:
+
+//invocar comp hijo en el padre asignando una referencia
+<child-data ref="childData"></child-data>
+
+mounted () {
+	const cmpName = this.$refs.childData.nombVarhijo; //childData es la ref del componente
+	console.log(nombVarhijo);
+}
+
+
+-)Acceder a un metodo del hijo desde el padre
+
+//invocar comp hijo en el padre asignando una referencia
+<child-methods ref="childMethod"></child-methods>
+
+mounted () {
+	this.$refs.childMethod.nombMetodoHijo(); //childMethod es la referencia
+}
+
+
+METODOS:
+
+-) Limpiar fomulario, dejar datos como inicio (invocar metodo desde evento @click="clearForm" en un boton)
+
+clearForm () {
+  Object.assign(this.$data, this.$options.data.apply(this))
+},
+
+
+TRANSICIONES:
+
+-) Son efectos/animaciones, ver https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12683879#overview
+
+Documentacion https://vuejs.org/v2/guide/transitions.html
+
+CARGAR HOJAS DE ESTILO:
+
+https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12403388#overview

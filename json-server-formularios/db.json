@@ -1,0 +1,37 @@
+{
+  "todos": [],
+  "activities_subscriptions": [
+    {
+      "terms": true,
+      "personal_data": {
+        "name": "Israel",
+        "surname": "Parra"
+      },
+      "activity_type_selection": {
+        "type": 1,
+        "date": "2018-10-19"
+      },
+      "activity_selected_data": {
+        "team": "Piera",
+        "information": ""
+      },
+      "id": 100
+    },
+    {
+      "terms": true,
+      "personal_data": {
+        "name": "Israel",
+        "surname": "Parra"
+      },
+      "activity_type_selection": {
+        "type": 2,
+        "date": "2018-10-19"
+      },
+      "activity_selected_data": {
+        "team": "Piera",
+        "information": "Nueva participación"
+      },
+      "id": 1
+    }
+  ]
+}
