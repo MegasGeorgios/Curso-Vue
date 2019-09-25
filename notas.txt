@@ -118,7 +118,10 @@ sudo npm install http-server -g
 
 con esto posicionandonos en el directorio del proyecto y ejecutando http-server en la terminal, levantamos el servidor y accedemos en el nav a localhost:8080 
 
--)se puede acceder desde el hijo a una variable del padre sin pasarla como prop mediante $parent.nombredata desde el comp hijo, https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12255338#questions
+
+COMUNICACION MEDIANTE REFERENCIAS:
+
+-)se puede acceder desde el hijo a una variable del padre sin pasarla como prop mediante {{$parent.nombredata}} en el dom o this.$parent.nombredata en el js desde el comp hijo, https://www.udemy.com/vuejs-2-y-vuex-desde-0-con-las-mejores-practicas/learn/lecture/12255338#questions, posiblemnte se pueda acceder a una var desde el hijo al abuelo con this.$parent.$parent.nombredata
 
 -)De esta manera podemos acceder a una variable de un componente hijo desde el padre:
 
